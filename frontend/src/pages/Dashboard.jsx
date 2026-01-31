@@ -5,69 +5,27 @@ import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import BookingModal from '../components/BookingModal';
 
-const allRooms = [
-    {
-        id: 1,
-        name: 'Conference Room A',
-        floor: 'Floor 1',
-        capacity: 10,
-        amenities: ['Projector', 'Whiteboard', 'Video Conference'],
-        status: 'Available',
-        type: 'available'
-    },
-    {
-        id: 2,
-        name: 'Meeting Room B',
-        floor: 'Floor 1',
-        capacity: 6,
-        amenities: ['Whiteboard', 'TV Display'],
-        status: 'Available',
-        type: 'available'
-    },
-    {
-        id: 3,
-        name: 'Boardroom',
-        floor: 'Floor 2',
-        capacity: 12,
-        amenities: ['Projector', 'Video Conference', 'AC'],
-        status: 'Available',
-        type: 'available'
-    },
-    {
-        id: 4,
-        name: 'Focus Room 1',
-        floor: 'Floor 2',
-        capacity: 2,
-        amenities: ['Whiteboard'],
-        status: 'Available',
-        type: 'available'
-    },
-    // Mock data for other views
-    {
-        id: 5,
-        name: 'Training Hall',
-        floor: 'Ground Floor',
-        capacity: 50,
-        amenities: ['Sound System', 'Projector'],
-        status: 'Reserved',
-        type: 'reserved'
-    },
-    {
-        id: 6,
-        name: 'Podcast Studio',
-        floor: 'Floor 3',
-        capacity: 4,
-        amenities: ['Soundproofing', 'Mics'],
-        status: 'Booked',
-        type: 'booked'
-    }
-];
-
 const Dashboard = () => {
     const navigate = useNavigate();
+    const [rooms, setRooms] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [currentView, setCurrentView] = useState('available');
+
+    useEffect(() => {
+        const storedRooms = JSON.parse(localStorage.getItem('rooms')) || [
+            { id: 1, name: 'Conference Room A', floor: 'Floor 1', capacity: 10, amenities: ['Projector', 'Whiteboard', 'Video Conference'], status: 'Available' },
+            { id: 2, name: 'Meeting Room B', floor: 'Floor 1', capacity: 6, amenities: ['Whiteboard', 'TV Display'], status: 'Available' },
+            { id: 3, name: 'Boardroom', floor: 'Floor 2', capacity: 12, amenities: ['Projector', 'Video Conference', 'AC'], status: 'Available' },
+            { id: 4, name: 'Focus Room 1', floor: 'Floor 2', capacity: 2, amenities: ['Whiteboard'], status: 'Available' },
+            { id: 5, name: 'Training Hall', floor: 'Ground Floor', capacity: 50, amenities: ['Sound System', 'Projector'], status: 'Reserved' },
+            { id: 6, name: 'Podcast Studio', floor: 'Floor 3', capacity: 4, amenities: ['Soundproofing', 'Mics'], status: 'Booked' }
+        ];
+        setRooms(storedRooms);
+        if (!localStorage.getItem('rooms')) {
+            localStorage.setItem('rooms', JSON.stringify(storedRooms));
+        }
+    }, []);
 
     // Modal State
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -94,7 +52,7 @@ const Dashboard = () => {
     };
 
     // Filter rooms based on search term AND current view
-    const filteredRooms = allRooms.filter(room => {
+    const filteredRooms = rooms.filter(room => {
         const matchesSearch = room.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             room.amenities.some(amenity => amenity.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -165,8 +123,8 @@ const Dashboard = () => {
                                         <p className="text-sm text-gray-500">{room.floor}</p>
                                     </div>
                                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${room.status === 'Available' ? 'bg-green-100 text-green-800' :
-                                            room.status === 'Reserved' ? 'bg-yellow-100 text-yellow-800' :
-                                                'bg-red-100 text-red-800'
+                                        room.status === 'Reserved' ? 'bg-yellow-100 text-yellow-800' :
+                                            'bg-red-100 text-red-800'
                                         }`}>
                                         {room.status}
                                     </span>
