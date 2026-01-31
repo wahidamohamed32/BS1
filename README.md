@@ -109,4 +109,67 @@ Developers & Designers: Anthony Muhati, NASSORO MOHAMMAD, Cynthia Wafula, Eben L
 Support
 For support or inquiries, contact: Swahili Port Hub Management
 
+
 Building smarter spaces for collaboration and innovation.
+
+## Getting Started (for Developers)
+
+To run this project locally, follow these steps:
+
+### Prerequisites
+- Node.js installed on your machine.
+
+### Installation
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+Start the development server:
+```bash
+npm run dev
+```
+The application will be available at `http://localhost:5173`.
+
+### Troubleshooting
+
+#### PowerShell "script cannot be loaded" Error
+If you encounter an error like `npm : File ... npm.ps1 cannot be loaded because running scripts is disabled`, it is due to PowerShell's execution policy.
+
+**Solution 1 (Recommended):**
+Run the command in **Command Prompt (cmd)** instead of PowerShell.
+
+**Solution 2 (PowerShell):**
+Temporarily bypass the execution policy for the current session:
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+Then try running `npm run dev` again.
+
+**Solution 3 (Permanent):**
+Change the execution policy for your user (allows local scripts):
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+#### Tailwind CSS v4 PostCSS Error
+If you see an error about `tailwindcss` moving to a separate package for PostCSS:
+1. Install the PostCSS plugin:
+   ```bash
+   npm install @tailwindcss/postcss
+   ```
+2. Update `postcss.config.js`:
+   ```js
+   export default {
+     plugins: {
+       '@tailwindcss/postcss': {},
+       autoprefixer: {},
+     },
+   }
+   ```
+3. Update `src/index.css` to use `@import "tailwindcss";`.
