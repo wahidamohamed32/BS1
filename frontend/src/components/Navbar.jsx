@@ -1,5 +1,5 @@
 import React from 'react';
-import { LogOut, Building2, Menu } from 'lucide-react';
+import { LogOut, Building2, Menu, Home } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ onMenuClick }) => {
@@ -20,6 +20,7 @@ const Navbar = ({ onMenuClick }) => {
                         >
                             <Menu className="w-6 h-6" />
                         </button>
+
                         <div className="flex-shrink-0 flex items-center">
                             <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
                                 <Building2 className="text-white w-6 h-6" />
