@@ -46,25 +46,27 @@ System Workflow
 
 
 Logic Flow
+
 [Log In]
    |
-   v
+   V
 [Dashboard] <-----------------------+
    |                                |
-   v                                |
+   V                                |
 [View Button]                       |
    |                                |
-   v                                |
+   V                                |
 [Booking Page]                      |
    |                                |
-   v                                |
+   V                                |
 [Available?]                        |
    |                                |
    +--- YES ---> [Booked]           |
    |                                |
-   +---- NO ---> [Reserve]          |
-   |                                |
-   +---- NO ---> [Book Another Room]+
+   +--- NO ---> [Reserve]           |
+                |                   |
+                V                   |
+           [Book Another Room] -----+
 
 
 Folder Structure
