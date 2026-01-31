@@ -14,7 +14,7 @@ const Sidebar = ({ isOpen, onClose, currentView, onNavigate, onLogout }) => {
             {/* Overlay */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity"
+                    className="fixed inset-0 bg-black bg-opacity-25 z-40 transition-opacity"
                     onClick={onClose}
                 />
             )}
@@ -41,8 +41,8 @@ const Sidebar = ({ isOpen, onClose, currentView, onNavigate, onLogout }) => {
                                 key={item.id}
                                 onClick={() => onNavigate(item.id)}
                                 className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${currentView === item.id
-                                        ? 'bg-blue-50 text-blue-700'
-                                        : 'text-gray-700 hover:bg-gray-100'
+                                    ? 'bg-blue-50 text-blue-700'
+                                    : 'text-gray-700 hover:bg-gray-100'
                                     }`}
                             >
                                 <item.icon className={`w-5 h-5 mr-3 ${currentView === item.id ? 'text-blue-700' : 'text-gray-400'
