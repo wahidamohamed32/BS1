@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, Mail, Lock } from 'lucide-react';
-
-console.log('Rendering AdminLogin Page');
-
 const AdminLogin = () => {
-    console.log('AdminLogin component function called');
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',

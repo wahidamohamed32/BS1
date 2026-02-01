@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Trash2, Edit, LogOut, LayoutGrid, Building2, Users, Clock, Monitor, CircleX } from 'lucide-react';
+import { Plus, Trash2, Edit, LogOut, LayoutGrid, Building2, Users, Clock, Monitor, XCircle } from 'lucide-react';
 import AddRoomModal from '../components/AddRoomModal';
-
-console.log('Rendering AdminDashboard component');
 
 const AdminDashboard = () => {
     console.log('AdminDashboard component function called');
@@ -20,17 +18,31 @@ const AdminDashboard = () => {
             return;
         }
 
-        const storedRooms = JSON.parse(localStorage.getItem('rooms')) || [
+        const defaultRooms = [
             { id: 1, name: 'Conference Room A', floor: 'Floor 1', capacity: 10, amenities: ['Projector', 'Whiteboard'], status: 'Available' },
             { id: 2, name: 'Meeting Room B', floor: 'Floor 1', capacity: 6, amenities: ['Whiteboard'], status: 'Available' },
             { id: 3, name: 'Boardroom', floor: 'Floor 2', capacity: 12, amenities: ['Projector', 'Video Conference'], status: 'Available' },
             { id: 4, name: 'Focus Room 1', floor: 'Floor 2', capacity: 2, amenities: ['Whiteboard'], status: 'Available' },
         ];
-        setRooms(storedRooms);
-        localStorage.setItem('rooms', JSON.stringify(storedRooms));
 
-        const storedSessions = JSON.parse(localStorage.getItem('activeSessions')) || [];
-        setActiveSessions(storedSessions);
+        try {
+            const storedRooms = JSON.parse(localStorage.getItem('rooms')) || defaultRooms;
+            setRooms(storedRooms);
+            if (!localStorage.getItem('rooms')) {
+                localStorage.setItem('rooms', JSON.stringify(defaultRooms));
+            }
+        } catch (e) {
+            console.error('Error parsing rooms:', e);
+            setRooms(defaultRooms);
+        }
+
+        try {
+            const storedSessions = JSON.parse(localStorage.getItem('activeSessions')) || [];
+            setActiveSessions(storedSessions);
+        } catch (e) {
+            console.error('Error parsing sessions:', e);
+            setActiveSessions([]);
+        }
     }, [navigate]);
 
     const calculateDuration = (loginTime) => {
@@ -212,7 +224,7 @@ const AdminDashboard = () => {
                                                     className="text-red-600 hover:text-red-900 flex items-center justify-end ml-auto"
                                                     title="Disconnect User"
                                                 >
-                                                    <CircleX className="w-4 h-4 mr-1" />
+                                                    <XCircle className="w-4 h-4 mr-1" />
                                                     Disconnect
                                                 </button>
                                             </td>
