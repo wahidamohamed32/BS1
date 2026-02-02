@@ -1,4 +1,4 @@
-Swahili Port Hub Room Booking System
+SwahiliPot Hub Room Booking System
 
 Overview
 The Swahili Port Hub Room Booking System is a digital platform designed to simplify how rooms and spaces within Swahili Port Hub are reserved, managed, and tracked. The system allows users to book available rooms while enabling administrators to manage availability, approvals, and records efficiently.
