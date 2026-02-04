@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS bookings (
 INSERT INTO users (email, password_hash, full_name, department, role) 
 VALUES (
     'admin@swahilipothub.co.ke', 
-    '$2b$10$rKZN5qF5qF5qF5qF5qF5qOqF5qF5qF5qF5qF5qF5qF5qF5qF5qF5q',
+    '$2b$10$FuW/mbXzrfVwjQXzKuNOn/2vuM2YDtpkHz4BS0hOjvQtPyXn',
     'Admin User',
     'Administration',
     'admin'
